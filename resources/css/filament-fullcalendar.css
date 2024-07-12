@@ -3,7 +3,10 @@
 .filament-fullcalendar {
     --fc-small-font-size: 0.85em;
     --fc-page-bg-color: rgba(208, 208, 208, 0.3);
-    --fc-neutral-bg-color: rgba(var(--gray-50),var(--tw-bg-opacity)); /* rgba(208, 208, 208, 0.3) */
+    --fc-neutral-bg-color: rgba(
+        var(--gray-50),
+        var(--tw-bg-opacity)
+    ); /* rgba(208, 208, 208, 0.3) */
     --fc-neutral-text-color: #808080;
     --fc-border-color: rgba(var(--gray-200));
 
@@ -38,8 +41,8 @@
 }
 
 html.dark .filament-fullcalendar {
-    --fc-neutral-bg-color: rgba(var(--gray-800), .8);
-    --fc-border-color: rgba(var(--gray-700), .5);
+    --fc-neutral-bg-color: rgba(var(--gray-800), 0.8);
+    --fc-border-color: rgba(var(--gray-700), 0.5);
 
     --fc-button-bg-color: rgba(var(--primary-500));
     --fc-button-border-color: rgba(var(--primary-600));
@@ -51,11 +54,11 @@ html.dark .filament-fullcalendar {
     --fc-event-bg-color: rgba(var(--primary-500));
     --fc-event-border-color: rgba(var(--primary-600));
 
-    --fc-list-event-hover-bg-color: rgba(var(--gray-800), .8);
+    --fc-list-event-hover-bg-color: rgba(var(--gray-800), 0.8);
 }
 
 .filament-fullcalendar .fc-toolbar-chunk {
-    @apply space-y-1;
+    @apply space-y-1 sm:space-y-0;
 }
 
 .filament-fullcalendar .fc-toolbar-title {
