@@ -35,7 +35,6 @@
     - [plugins(`array` $plugins, `bool` $merge)](#pluginsarray-plugins-bool-merge)
     - [config(`array` $config)](#configarray-config)
 - [Interacting with actions](#interacting-with-actions)
-    - [Customizing actions](#customizing-actions)
     - [Authorizing actions](#authorizing-actions)
 - [Intercepting events](#intercepting-events)
 - [Render Hooks](#render-hooks)
@@ -290,44 +289,7 @@ The configuration of the calendar. Not all configurations have a dedicated fluen
 # Interacting with actions
 This packages leverages the power of [Filament Actions](https://filamentphp.com/docs/3.x/actions/overview) to allow you to view, create, edit and delete events.
 
-To get started, you'll need to tell the widget which model it should use to perform the actions, and define a form schema for the view, create and edit actions.
-
-```php
-<?php
-
-namespace App\Filament\Widgets;
-
-use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;
-use App\Models\Event;
-
-class CalendarWidget extends FullCalendarWidget
-{
-    public Model | string | null $model = Event::class;
-
-    public function getFormSchema(): array
-    {
-        return [
-            Forms\Components\TextInput::make('name'),
-
-            Forms\Components\Grid::make()
-                ->schema([
-                    Forms\Components\DateTimePicker::make('starts_at'),
-
-                    Forms\Components\DateTimePicker::make('ends_at'),
-                ]),
-        ];
-    }
-}
-```
-
-> **Note**
-> Please note that the form schema does not need to contain the same fields as the FullCalendar event object. You can add as many fields as your model has.
-
-That's it! Now you can view, create, edit and delete events.
-
-### Customizing actions
-
-If you want to customize the actions, you can override the default actions that comes with this package. Actions behaves like any other Filament Action, therefore you can customize them as you wish the same way you would customize any other Filament Action.
+To get started, you'll need to tell the widget which model it should use to perform the actions. After that, you'll need to add the actions you like to the class and define a form schema for these actions.
 
 ```php
 <?php
@@ -349,17 +311,17 @@ class CalendarWidget extends FullCalendarWidget
         ];
     }
 
+    protected function viewAction(): Action
+    {
+        return Actions\ViewAction::make();
+    }
+
     protected function modalActions(): array
     {
         return [
             Actions\EditAction::make(),
             Actions\DeleteAction::make(),
         ];
-    }
-
-    protected function viewAction(): Action
-    {
-        return Actions\ViewAction::make();
     }
 
     public function getFormSchema(): array
@@ -377,6 +339,11 @@ class CalendarWidget extends FullCalendarWidget
     }
 }
 ```
+
+> **Note**
+> Please note that the form schema does not need to contain the same fields as the FullCalendar event object. You can add as many fields as your model has.
+
+That's it! Now you can view, create, edit and delete events.****
 
 ### Authorizing actions
 

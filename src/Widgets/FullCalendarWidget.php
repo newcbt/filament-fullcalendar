@@ -2,13 +2,11 @@
 
 namespace Saade\FilamentFullCalendar\Widgets;
 
-use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Widgets\Widget;
-use Saade\FilamentFullCalendar\Actions;
 
 class FullCalendarWidget extends Widget implements HasForms, HasActions
 {
@@ -24,26 +22,6 @@ class FullCalendarWidget extends Widget implements HasForms, HasActions
     protected static string $view = 'filament-fullcalendar::fullcalendar';
 
     protected int | string | array $columnSpan = 'full';
-
-    protected function headerActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
-
-    protected function modalActions(): array
-    {
-        return [
-            Actions\EditAction::make(),
-            Actions\DeleteAction::make(),
-        ];
-    }
-
-    protected function viewAction(): Action
-    {
-        return Actions\ViewAction::make();
-    }
 
     /**
      * FullCalendar will call this function whenever it needs new event data.
